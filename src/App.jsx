@@ -1,17 +1,27 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import Chat from "./components/Chat";
 import Modal from "./components/modal";
 
+const AppWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f2f2f2;
+  flex-direction: column;
+`;
+
 const App = () => {
   const [showModal, setShowModal] = useState(false);
-  const [messages, setMessages] = useState([]); // хранилище сообщений тут
+  const [messages, setMessages] = useState([]);
 
   const handleDeleteAll = () => {
     setShowModal(true);
   };
 
   const handleConfirmDelete = () => {
-    setMessages([]); // удаление всех сообщений
+    setMessages([]);
     setShowModal(false);
   };
 
@@ -20,7 +30,7 @@ const App = () => {
   };
 
   return (
-    <div style={styles.app}>
+    <AppWrapper>
       <Chat messages={messages} setMessages={setMessages} />
       <button onClick={handleDeleteAll}>Удалить все</button>
       <Modal
@@ -28,19 +38,8 @@ const App = () => {
         onClose={handleCloseModal}
         onConfirm={handleConfirmDelete}
       />
-    </div>
+    </AppWrapper>
   );
-};
-
-const styles = {
-  app: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-    backgroundColor: "#f2f2f2",
-    flexDirection: "column",
-  },
 };
 
 export default App;

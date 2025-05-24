@@ -1,9 +1,10 @@
 import React from "react";
+import styled from "styled-components";
 import MessageItem from "./MessageItem";
 
-const MessageList = ({ messages, deleteMessage,backgroundMessage }) => {
+const MessageList = ({ messages, deleteMessage, backgroundMessage }) => {
   return (
-    <div style={styles.list}>
+    <ListContainer>
       {messages.map((msg) => (
         <MessageItem
           key={msg.id}
@@ -15,16 +16,14 @@ const MessageList = ({ messages, deleteMessage,backgroundMessage }) => {
           background={msg.background}
         />
       ))}
-    </div>
+    </ListContainer>
   );
 };
 
-const styles = {
-  list: {
-    flexGrow: 1,
-    overflowY: "auto",
-    padding: "5px",
-  },
-};
+const ListContainer = styled.div`
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 5px;
+`;
 
 export default MessageList;

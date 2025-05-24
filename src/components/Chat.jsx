@@ -1,7 +1,20 @@
 import React from "react";
+import styled from "styled-components";
 import ChatHeader from "./ChatHeader";
 import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
+
+const ChatContainer = styled.div`
+  width: 300px;
+  height: 400px;
+  border: 2px solid red;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+`;
 
 const Chat = ({ messages, setMessages }) => {
   const addMessage = (text) => {
@@ -31,7 +44,7 @@ const Chat = ({ messages, setMessages }) => {
   };
 
   return (
-    <div style={styles.chat}>
+    <ChatContainer>
       <ChatHeader name="Nurs Agai" />
       <p className="agai">Э ищяк где домашка (10:30)</p>
       <MessageList
@@ -40,22 +53,9 @@ const Chat = ({ messages, setMessages }) => {
         backgroundMessage={backgroundMessage}
       />
       <MessageInput onSend={addMessage} />
-    </div>
+    </ChatContainer>
   );
 };
 
-const styles = {
-  chat: {
-    width: "300px",
-    height: "400px",
-    border: "2px solid red",
-    borderRadius: "10px",
-    padding: "10px",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    backgroundColor: "#fff",
-  },
-};
-
 export default Chat;
+``

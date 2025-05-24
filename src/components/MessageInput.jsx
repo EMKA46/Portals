@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 
 const MessageInput = ({ onSend }) => {
   const [text, setText] = useState("");
@@ -9,55 +10,48 @@ const MessageInput = ({ onSend }) => {
       setText("");
     }
   };
+
+  const isDisabled = text.trim() === "";
+
   return (
-    <div style={styles.inputContainer}>
-      <input
+    <InputContainer>
+      <Input
         type="text"
         value={text}
         onChange={(e) => setText(e.target.value)}
-        style={styles.input}
         placeholder="Напишите сообщение..."
       />
-      <button
-        onClick={handleSend}
-        style={{
-          ...styles.button,
-          ...(text.trim() === "" ? styles.buttonDisabled : {}),
-        }}
-
-
-
-        
-        disabled={text.trim() === ""}
-      >
+      <SendButton onClick={handleSend} disabled={isDisabled}>
         Отправить
-      </button>
-    </div>
+      </SendButton>
+    </InputContainer>
   );
 };
 
-const styles = {
-  inputContainer: {
-    display: "flex",
-    marginTop: "10px",
-  },
-  input: {
-    flexGrow: 1,
-    marginRight: "5px",
-    padding: "5px",
-  },
-  button: {
-    padding: "5px 10px",
-    backgroundColor: "red",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-  },
-  buttonDisabled: {
-    backgroundColor: "gray",
-    cursor: "not-allowed",
-  },
-};
+
+const InputContainer = styled.div`
+  display: flex;
+  margin-top: 10px;
+`;
+
+const Input = styled.input`
+  flex-grow: 1;
+  margin-right: 5px;
+  padding: 5px;
+`;
+
+const SendButton = styled.button`
+  padding: 5px 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+  }
+`;
 
 export default MessageInput;
