@@ -13,7 +13,7 @@ const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #fff;
+  background-color: #e5dbdb;
 `;
 
 const Chat = ({ messages, setMessages }) => {
